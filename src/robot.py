@@ -57,7 +57,7 @@ class Robot:
             curr_x += 1
         elif self.position == 'SOUTH':
             curr_y -= 1
-        elif self.position == 'WEST': 
+        else:  # WEST 
             curr_x -= 1
         
         if self._is_valid(curr_x, curr_y, self.position):

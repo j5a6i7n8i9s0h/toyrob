@@ -26,10 +26,13 @@ destroy_vp:
 run_py:
 	$(PYTHON) src/main.py $(CMDLIST_FILE)
 
+.PHONY: test
 test:
-	cd src/ && ../$(VENV)/coverage run --branch -m pytest . -vv && \
-	../$(VENV)/coverage report && \
-	../$(VENV)/coverage html --title "Function Coverage" -d ./
+	cd src/ && ../$(VENV)/coverage run --branch -m pytest . -vv --ignore=./vp/ && \
+	../$(VENV)/coverage report --omit="../vp*" && \
+	../$(VENV)/coverage html --omit="../vp*" --title "Function Coverage" -d ../output/coverage
 
-
-
+.PHONY: clean
+clean:
+	rm -rf output/
+	rm -rf vp/
